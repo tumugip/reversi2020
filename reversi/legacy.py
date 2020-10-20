@@ -1,7 +1,10 @@
 
+
 #
-# オセロ（リバーシ） 6x6
+#オセロ（リバーシ）6x6
 #
+
+import random
 
 N = 6  # 大きさ
 
@@ -9,6 +12,7 @@ EMPTY = 0  # 空
 BLACK = 1  # 黒
 WHITE = 2  # 白
 STONE = ['□', '●', '○']  #石の文字
+
 
 #
 # board = [0] * (N*N)
@@ -108,6 +112,7 @@ def can_play(board, color):
   return False
 
 
+
 def game(player1, player2):
 	board = init_board()
 	show_board(board)
@@ -128,10 +133,26 @@ def game(player1, player2):
 			on_gaming = put_and_reverse(board, position, WHITE)
 	show_board(board)  # 最後の結果を表示!
 
+
+
+
+def rand(board, color): #酔っ払いAI
+  for i in range(100):
+    position = random.randint(0,35)
+    if put_and_reverse(board, position, color):
+      return position
+  return 0
+
+
+"""
+
 def ochibi(board, color): #おチビAI
   for position in range(N*N):
     if put_and_reverse(board, position, color):
       return position
   return 0
 
-game(ochibi, ochibi)
+"""
+
+game(rand, rand)
+
